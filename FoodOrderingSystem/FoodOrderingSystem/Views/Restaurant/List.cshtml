@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+@using yasemin.Models
+@model List<FOOD>
+
+<div id="datatable-1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+    <div class="block">
+        
+        <form action="/Restaurant/List/@ViewBag.restaurant.RestaurantId" method="post" role="form">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <div class="dataTables_length" id="datatable-1_length">
+                        <h1>@ViewBag.restaurant.RestaurantName</h1>
+                    </div>
+                    <div class="dataTables_length" id="datatable-1_length">
+
+                        <label>
+                            Categories <select name="CategoryId" aria-controls="datatable-1" class="form-control input-sm">
+                                <option value="0">All Categories</option>
+                                @foreach (var item in ViewBag.categories)
+                                {
+                                    <option value="@item.CategoryId">@item.CategoryName</option>
+                                }
+
+                            </select>
+                        </label>
+                        <input type="hidden" name="RestaurantId" value="@ViewBag.restaurant.RestaurantId" />
+                        <button type="submit" class="btn btn-primary">Filtrele</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+            
+        </form>
+        <div class="block-controls">
+            <a class="btn btn-warning rounded" href="/Home/Index"> Back to Home Page </a>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table id="datatable-1" class="table table-striped table-hover dataTable no-footer" role="grid" aria-describedby="datatable-1_info">
+                    <thead>
+                        <tr role="row">
+                            <th>Food Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Buy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (FOOD item in Model)
+                        {
+                            <tr>
+                                <td>
+
+                                    @item.FoodName
+
+
+                                </td>
+
+
+                                <td>
+
+                                    @item.FoodDescription
+
+                                </td>
+
+                                <td>
+                                    @item.FoodPrice
+                                </td>
+                                <td>
+                                    @item.CATEGORY.CategoryName
+                                </td>
+
+                                <td><a href="#" class="btn btn-danger foodAdd" data-foodid="@item.FoodId">Add To Basket</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@section scripts{
+
+    <script src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+
+    <script>
+        $(".foodAdd").click( function ()
+        {
+            var s = confirm("Are you sure you want to add this food to basket?");
+            if (s) {
+                var fid = $(this).data("foodid");
+                //alert("ID=" + id);
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Basket/BasketAdd/" + fid,
+                        success: function () {
+
+                            window.location.replace("/Restaurant/List/"+@ViewBag.restaurant.RestaurantId);
+                        },
+                        error: function () {
+                            alert("Something went wrong!");
+                        }
+                    });
+            }
+            else {
+                alert("Cancel");
+            }
+
+        });
+
+
+    </script>
+}

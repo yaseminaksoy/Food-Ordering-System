@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Address";
+}
+
+@using yasemin.Models
+@model List<USER_ADDRESS>
+
+<div id="datatable-1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>
+                <span class="main-text">
+                    Address
+                </span>
+            </h1>
+        </div>
+        <div class="col-md-6">
+
+            <!-- START Main Buttons -->
+            <div class="page-heading-controls">
+                
+                
+                <a href="/User/AddressAdd/@ViewBag.userId" role="button" class="btn btn-primary">Add New Address</a>
+                <a href="/User/Index" role="button" class="btn btn-warning">Users Page</a>
+            </div>
+            
+            <!-- END Main Buttons -->
+
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-xs-12">
+            <table id="datatable-1" class="table table-striped table-hover dataTable no-footer" role="grid" aria-describedby="datatable-1_info">
+                <thead>
+                    <tr role="row">
+                        <th>Address Title</th>
+                        <th>Description</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (USER_ADDRESS item in Model)
+                    {
+                        <tr>
+                            <td>
+
+                                @item.AddressTitle
+
+
+                            </td>
+
+                            <td>
+
+                                @item.AddressDescription
+
+                            </td>
+
+                            <td>
+                                <form action="/User/AddressUpdate/@item.AddressId" method="post" role="form">
+                                    <button type="submit" class="btn btn-danger rounded">Update</button>
+                                </form>
+                            </td>
+                            <td><a href="#" class="btn btn-danger adrDelete" data-uid="@item.UserId" data-adrid="@item.AddressId">Delete</a></td>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+
+    <script src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+
+    <script>
+        $(".adrDelete").click(function () {
+            var s = confirm("Are you sure you want to delete the record?");
+            if (s) {
+                var aid = $(this).data("adrid");
+                var uid = $(this).data("uid");
+                //alert("ID=" + id);
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/User/AddressDelete/" + aid,
+                        success: function () {
+                            alert("The record has been deleted.");
+                            window.location.replace("/User/Address/" + uid);
+                        },
+                        error: function () {
+                            alert("Something went wrong!");
+                        }
+                    });
+            }
+            else {
+                alert("Cancel");
+            }
+
+        });
+
+
+    </script>
+}
+
+

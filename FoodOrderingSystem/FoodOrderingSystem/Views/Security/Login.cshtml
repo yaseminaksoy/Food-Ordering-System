@@ -1,0 +1,24 @@
+﻿@model yasemin.Models.MEMBER
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<div class="container">
+    <h2>Please log in..</h2>
+    @ViewBag.message
+    <form action="/Security/Login" method="post" role="form">
+        <div class="form-group">
+            @Html.LabelFor(m => m.MemberMail)
+            @Html.TextBoxFor(m => m.MemberMail, new { @class = "form-control", placeholder = "E-Mail" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.MemberPassword)
+            @Html.PasswordFor(m => m.MemberPassword, new { @class = "form-control", placeholder = "Password" })
+        </div>
+        <button type="submit" class="btn btn-block btn-success">Log In</button>
+    </form>
+
+
+
+</div>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1ae5dc0cbc1f4c23b2b41f19377f612c" Name="Diagram1">
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.ADMIN_FOOD" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.CATEGORY" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.CITY" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.CITY_RESTAURANT" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.CONCEPT" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.CONCEPT_RESTAURANT" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.FOOD" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.MEMBER" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.ORDER_FOOD" Width="1.5" PointX="10.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.ORDER_USER" Width="1.5" PointX="10.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.ORDERS" Width="1.5" PointX="8.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.RESTAURANT" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.SCORE" Width="1.5" PointX="5.25" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.USER_ADDRESS" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbFoodOrderingSystemModel.USERS" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_MemberAdminID" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_CityId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_CityRestaurantId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_ConceptId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_ConceptRestaurantId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_OrderFood_FoodId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_RestaurantId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_MemberRestaurantID" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_MemberUserID" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_OrderFood_OrderId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_OrderUser_OrderId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_OrderUser_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_Order_RestaurantId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_Order_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_ScoreRestaurantId" ManuallyRouted="false" />
+        <AssociationConnector Association="DbFoodOrderingSystemModel.FK_UserId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

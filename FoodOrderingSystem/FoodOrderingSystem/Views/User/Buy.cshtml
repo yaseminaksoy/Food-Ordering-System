@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Buy";
+}
+
+@using yasemin.Models
+@model USERS
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Complete The Order      
+                </div>
+                <div class="container">
+                    @ViewBag.total
+
+                </div>
+                <div class="block-controls">
+                    <a class="btn btn-warning rounded" href="/User/Complete"> Complete </a>
+                </div>
+
+                <div class="block-controls">
+
+                    <a class="btn btn-warning rounded" href="/Basket/Index">
+                        Back To Basket
+                    </a>
+                    <a class="btn btn-warning rounded" href="/User/MyProfile">
+                        My Profile
+                    </a>
+
+                </div>
+            </div>
+            <div class="block-content-outer">
+                <div class="block-content-inner">
+                    <div class="table-responsive">
+                        <div id="datatable-1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <table id="datatable-1" class="table table-striped table-hover dataTable no-footer" role="grid" aria-describedby="datatable-1_info">
+                                        <thead>
+                                            <tr>
+                                                <th>Food Name</th>
+                                                <th>Description</th>
+                                                <th>Unit Price</th>
+                                                <th>Quantity</th>
+                                                <th>Total Price</th>
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (FOOD item in BASKET.Foods)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @item.FoodName
+                                                    </td>
+
+
+                                                    <td>
+                                                        @item.FoodDescription
+                                                    </td>
+
+                                                    <td>
+                                                        @item.FoodPrice
+                                                    </td>
+
+                                                    <td>
+                                                        @item.FoodAmount
+                                                    </td>
+
+
+                                                    <td>
+                                                        @item.TotalPrice
+
+                                                    </td>
+
+                                                </tr>
+
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br />
+            <br />
+            <h2>Select an Address</h2>
+            <form action="/User/Buy" method="post" role="form">
+                <select name="AddressId" aria-controls="datatable-1" class="form-control input-sm">
+                    
+                    @foreach (var item in Model.USER_ADDRESS)
+                    {
+                        <option value="@item.AddressId">@item.AddressTitle</option>
+                    }
+
+                </select>
+                <button type="submit" class="btn btn-primary">Complete</button>
+            </form>
+
+</div>
+    </div>
+</div>
+

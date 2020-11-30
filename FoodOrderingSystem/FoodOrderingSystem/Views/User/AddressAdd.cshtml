@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "AddressAdd";
+}
+
+@using yasemin.Models
+@model USER_ADDRESS
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Add or Update an Address
+                </div>
+                <div class="block-controls">
+                    @if (HttpContext.Current.User.IsInRole("A"))
+                    {
+                        <a class="btn btn-warning rounded" href="/User/Address/@Model.UserId"> Address Page </a>
+                    }
+                    @if (HttpContext.Current.User.IsInRole("U"))
+                    {
+                        <a class="btn btn-warning rounded" href="/User/MyProfile/"> Back To My Profile </a>
+                    }
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer" style="display: block;">
+                <div class="block-content-inner">
+                    <form action="/User/AddressAdd" method="post" role="form">
+                        @if (Model != null)
+                        {
+                            <input type="hidden" name="AddressId" value="@Model.AddressId" />
+                            <input type="hidden" name="UserId" value="@Model.UserId" />
+                        }
+                        else
+                        {
+                            <input type="hidden" name="UserId" value="@ViewBag.userId" />
+                        }
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Address Title</label>
+                            @if (Model.AddressTitle == null)
+                            {
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter address title" name="AddressTitle">
+                            }
+                            else
+                            {
+                                <input value="@Model.AddressTitle" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter address title" name="AddressTitle">
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Address Description</label>
+                            @if (Model.AddressDescription == null)
+                            {
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter address description" name="AddressDescription">
+                            }
+                            else
+                            {
+                                <input value="@Model.AddressDescription" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter address description" name="AddressDescription">
+                            }
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbFoodOrderingSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ADMIN_FOOD">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdminPassword" Type="int" Nullable="false" />
+    <Property Name="AdminRole" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CITY">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CITY_RESTAURANT">
+    <Key>
+      <PropertyRef Name="CityRestaurantId" />
+    </Key>
+    <Property Name="CityRestaurantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONCEPT">
+    <Key>
+      <PropertyRef Name="ConceptId" />
+    </Key>
+    <Property Name="ConceptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConceptName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONCEPT_RESTAURANT">
+    <Key>
+      <PropertyRef Name="ConceptRestaurantId" />
+    </Key>
+    <Property Name="ConceptRestaurantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConceptId" Type="int" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FOOD">
+    <Key>
+      <PropertyRef Name="FoodId" />
+    </Key>
+    <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FoodPrice" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDER_FOOD">
+    <Key>
+      <PropertyRef Name="OrderFoodId" />
+    </Key>
+    <Property Name="OrderFoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="FoodId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDER_USER">
+    <Key>
+      <PropertyRef Name="OrderUser" />
+    </Key>
+    <Property Name="OrderUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDERS">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RESTAURANT">
+    <Key>
+      <PropertyRef Name="RestaurantId" />
+    </Key>
+    <Property Name="RestaurantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RestaurantMail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RestaurantPassword" Type="int" Nullable="false" />
+    <Property Name="RestaurantName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RestaurantScore" Type="int" />
+    <Property Name="RestaurantRole" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SCORE">
+    <Key>
+      <PropertyRef Name="ScoreId" />
+    </Key>
+    <Property Name="ScoreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RestaurantId" Type="int" Nullable="false" />
+    <Property Name="Score" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="USER_ADDRESS">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AddressTitle" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AddressDescription" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserMail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserSurname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserBalance" Type="int" />
+    <Property Name="UserRole" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_CategoryId">
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
+    <End Role="FOOD" Type="Self.FOOD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="FOOD">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CityId">
+    <End Role="CITY" Type="Self.CITY" Multiplicity="1" />
+    <End Role="CITY_RESTAURANT" Type="Self.CITY_RESTAURANT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CITY">
+        <PropertyRef Name="CityId" />
+      </Principal>
+      <Dependent Role="CITY_RESTAURANT">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CityRestaurantId">
+    <End Role="RESTAURANT" Type="Self.RESTAURANT" Multiplicity="1" />
+    <End Role="CITY_RESTAURANT" Type="Self.CITY_RESTAURANT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RESTAURANT">
+        <PropertyRef Name="RestaurantId" />
+      </Principal>
+      <Dependent Role="CITY_RESTAURANT">
+        <PropertyRef Name="RestaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConceptId">
+    <End Role="CONCEPT" Type="Self.CONCEPT" Multiplicity="1" />
+    <End Role="CONCEPT_RESTAURANT" Type="Self.CONCEPT_RESTAURANT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONCEPT">
+        <PropertyRef Name="ConceptId" />
+      </Principal>
+      <Dependent Role="CONCEPT_RESTAURANT">
+        <PropertyRef Name="ConceptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConceptRestaurantId">
+    <End Role="RESTAURANT" Type="Self.RESTAURANT" Multiplicity="1" />
+    <End Role="CONCEPT_RESTAURANT" Type="Self.CONCEPT_RESTAURANT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RESTAURANT">
+        <PropertyRef Name="RestaurantId" />
+      </Principal>
+      <Dependent Role="CONCEPT_RESTAURANT">
+        <PropertyRef Name="RestaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderFood_FoodId">
+    <End Role="FOOD" Type="Self.FOOD" Multiplicity="1" />
+    <End Role="ORDER_FOOD" Type="Self.ORDER_FOOD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FOOD">
+        <PropertyRef Name="FoodId" />
+      </Principal>
+      <Dependent Role="ORDER_FOOD">
+        <PropertyRef Name="FoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderFood_OrderId">
+    <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="1" />
+    <End Role="ORDER_FOOD" Type="Self.ORDER_FOOD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDERS">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="ORDER_FOOD">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderUser_OrderId">
+    <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="1" />
+    <End Role="ORDER_USER" Type="Self.ORDER_USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDERS">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="ORDER_USER">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderUser_UserId">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="ORDER_USER" Type="Self.ORDER_USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ORDER_USER">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RestaurantId">
+    <End Role="RESTAURANT" Type="Self.RESTAURANT" Multiplicity="1" />
+    <End Role="FOOD" Type="Self.FOOD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RESTAURANT">
+        <PropertyRef Name="RestaurantId" />
+      </Principal>
+      <Dependent Role="FOOD">
+        <PropertyRef Name="RestaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScoreRestaurantId">
+    <End Role="RESTAURANT" Type="Self.RESTAURANT" Multiplicity="1" />
+    <End Role="SCORE" Type="Self.SCORE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RESTAURANT">
+        <PropertyRef Name="RestaurantId" />
+      </Principal>
+      <Dependent Role="SCORE">
+        <PropertyRef Name="RestaurantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserId">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="USER_ADDRESS" Type="Self.USER_ADDRESS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="USER_ADDRESS">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbFoodOrderingSystemModelStoreContainer">
+    <EntitySet Name="ADMIN_FOOD" EntityType="Self.ADMIN_FOOD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CITY" EntityType="Self.CITY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CITY_RESTAURANT" EntityType="Self.CITY_RESTAURANT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONCEPT" EntityType="Self.CONCEPT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONCEPT_RESTAURANT" EntityType="Self.CONCEPT_RESTAURANT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FOOD" EntityType="Self.FOOD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDER_FOOD" EntityType="Self.ORDER_FOOD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDER_USER" EntityType="Self.ORDER_USER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDERS" EntityType="Self.ORDERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RESTAURANT" EntityType="Self.RESTAURANT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SCORE" EntityType="Self.SCORE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER_ADDRESS" EntityType="Self.USER_ADDRESS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CategoryId" Association="Self.FK_CategoryId">
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+      <End Role="FOOD" EntitySet="FOOD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CityId" Association="Self.FK_CityId">
+      <End Role="CITY" EntitySet="CITY" />
+      <End Role="CITY_RESTAURANT" EntitySet="CITY_RESTAURANT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CityRestaurantId" Association="Self.FK_CityRestaurantId">
+      <End Role="RESTAURANT" EntitySet="RESTAURANT" />
+      <End Role="CITY_RESTAURANT" EntitySet="CITY_RESTAURANT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConceptId" Association="Self.FK_ConceptId">
+      <End Role="CONCEPT" EntitySet="CONCEPT" />
+      <End Role="CONCEPT_RESTAURANT" EntitySet="CONCEPT_RESTAURANT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConceptRestaurantId" Association="Self.FK_ConceptRestaurantId">
+      <End Role="RESTAURANT" EntitySet="RESTAURANT" />
+      <End Role="CONCEPT_RESTAURANT" EntitySet="CONCEPT_RESTAURANT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderFood_FoodId" Association="Self.FK_OrderFood_FoodId">
+      <End Role="FOOD" EntitySet="FOOD" />
+      <End Role="ORDER_FOOD" EntitySet="ORDER_FOOD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderFood_OrderId" Association="Self.FK_OrderFood_OrderId">
+      <End Role="ORDERS" EntitySet="ORDERS" />
+      <End Role="ORDER_FOOD" EntitySet="ORDER_FOOD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderUser_OrderId" Association="Self.FK_OrderUser_OrderId">
+      <End Role="ORDERS" EntitySet="ORDERS" />
+      <End Role="ORDER_USER" EntitySet="ORDER_USER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderUser_UserId" Association="Self.FK_OrderUser_UserId">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ORDER_USER" EntitySet="ORDER_USER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RestaurantId" Association="Self.FK_RestaurantId">
+      <End Role="RESTAURANT" EntitySet="RESTAURANT" />
+      <End Role="FOOD" EntitySet="FOOD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScoreRestaurantId" Association="Self.FK_ScoreRestaurantId">
+      <End Role="RESTAURANT" EntitySet="RESTAURANT" />
+      <End Role="SCORE" EntitySet="SCORE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserId" Association="Self.FK_UserId">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="USER_ADDRESS" EntitySet="USER_ADDRESS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+@using yasemin.Models
+@model USERS
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Add or Update an User
+                </div>
+                <div class="block-controls">
+                    <a class="btn btn-warning rounded" href="/User/Index"> Users Page </a>
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer" style="display: block;">
+                <div class="block-content-inner">
+                    <form action="/User/Add" method="post" role="form">
+                        @if (Model != null)
+                        {
+                            <input type="hidden" name="UserId" value="@Model.UserId" />
+                        }
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">User Name</label>
+                            @if (Model.UserName == null)
+                            {
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter user name" name="UserName">
+                            }
+                            else
+                            {
+                                <input value="@Model.UserName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter user name" name="UserName">
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">User Surname</label>
+                            @if (Model.UserSurname == null)
+                            {
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter user surname" name="UserSurname">
+                            }
+                            else
+                            {
+                                <input value="@Model.UserSurname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter user surname" name="UserSurname">
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">User Mail Address</label>
+                            @if (Model.UserMail == null)
+                            {
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter user e-mail" name="UserMail">
+                            }
+                            else
+                            {
+                                <input value="@Model.UserMail" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter user e-mail" name="UserMail">
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">User Password</label>
+                            @if (Model.UserPassword == null)
+                            {
+                                <input value="" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter user password" name="UserPassword">
+                            }
+                            else
+                            {
+                                <input value="@Model.UserPassword" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter user password" name="UserPassword">
+                            }
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">User Balance</label>
+                            @if (Model.UserBalance == null)
+                            {
+                                <input value="" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter user balance" name="UserBalance">
+                            }
+                            else
+                            {
+                                <input value="@Model.UserBalance" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter user balance" name="UserBalance">
+                            }
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "FoodAdd";
+}
+
+@using yasemin.Models
+@model FOOD
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="block">
+            <div class="block-heading">
+                <div class="main-text h2">
+                    Add or Update a Food
+                </div>
+                <div class="block-controls">
+                    @if (HttpContext.Current.User.IsInRole("R"))
+                    {
+                        <a class="btn btn-warning rounded" href="/Restaurant/MyRestaurant"> Back to My Restaurant </a>
+
+                    }
+                    @if (HttpContext.Current.User.IsInRole("A"))
+                    {
+                        <a class="btn btn-warning rounded" href="/Restaurant/Details/@ViewBag.RestaurantId"> Back to Restaurant </a>
+
+                    }
+                    <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+                </div>
+            </div>
+            <div class="block-content-outer" style="display: block;">
+                <div class="block-content-inner">
+                    <form action="/Restaurant/FoodAdd" method="post" role="form">
+                        @if (Model != null)
+                        {
+                            <input type="hidden" name="FoodId" value="@Model.FoodId" />
+                            <input type="hidden" name="RestaurantId" value="@Model.RestaurantId" />
+                        }
+                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Food Name</label>
+                            @if (Model.FoodName == null)
+                            {
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter food name" name="FoodName">
+                            }
+                            else
+                            {
+                                <input value="@Model.FoodName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter food name" name="FoodName">
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Food Description</label>
+                            @if (Model.FoodDescription == null)
+                            {
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter food description" name="FoodDescription">
+                            }
+                            else
+                            {
+                                <input value="@Model.FoodDescription" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter food description" name="FoodDescription">
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Food Price</label>
+                            @if (Model.FoodPrice == null)
+                            {
+                                <input value="" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter food price" name="FoodPrice">
+                            }
+                            else
+                            {
+                                <input value="@Model.FoodPrice" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter food price" name="FoodPrice">
+                            }
+
+                        </div>
+                        <div class="form-group">
+                            @foreach (CATEGORY item in ViewBag.categories)
+                            {
+                                if (Model.CategoryId == item.CategoryId)
+                                {
+                                    <label for="exampleInputPassword1">Current Category:</label>
+                                    <input value="@item.CategoryName" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter food category" name="CurrentCategoryName">
+
+                                }
+                            }
+                            <br />
+                            <label for="exampleInputPassword1">Select a Food Category</label>
+                            <select name="CategoryId" aria-controls="datatable-1" class="form-control input-sm">
+                                <option value="0">All Categories</option>
+                                @foreach (CATEGORY item in ViewBag.categories)
+                                {
+                                    <option value="@item.CategoryId">@item.CategoryName</option>
+                                }
+                            </select>
+
+
+
+                            <br />
+                            <label for="exampleInputPassword1">Or you can text food category</label>
+                            <br />
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter food category" name="CategoryName">
+
+
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

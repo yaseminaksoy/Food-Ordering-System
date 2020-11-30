@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "Restaurants";
+}
+
+@using yasemin.Models
+@model List<RESTAURANT>
+
+<div id="datatable-1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>
+                <span class="main-text">
+                    Restaurants
+                </span>
+            </h1>
+        </div>
+        <div class="col-md-6">
+
+            <!-- START Main Buttons -->
+            <div class="page-heading-controls">
+                <a href="/Restaurant/Add" role="button" class="btn btn-primary">Add New Restaurant</a>
+
+            </div>
+            <!-- END Main Buttons -->
+
+        </div>
+    </div>
+    <form action="/Restaurant/Index" method="post" role="form">
+        <div class="col-xs-6">
+            <div class="form-horizontal">
+                <div class="dataTables_length" id="datatable-1_length">
+                    <h4>Search a Restaurant</h4>
+                </div>
+            </div>
+
+            <div class="col-xs-6">
+                <div class="dataTables_length" id="datatable-1_length">
+                    <div class="form-horizontal">
+                        <label>
+                            Cities <select name="CityId" aria-controls="datatable-1" class="form-control input-sm">
+                                <option value="0">All Cities</option>
+                                @foreach (var item in ViewBag.cities)
+                                {
+                                    <option value="@item.CityId">@item.CityName</option>
+                                }
+
+                            </select>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-xs-6">
+                <div id="datatable-1_filter" class="dataTables_filter">
+                    <div class="form-horizontal">
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search a restaurant name" name="searchText">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <table id="datatable-1" class="table table-striped table-hover dataTable no-footer" role="grid" aria-describedby="datatable-1_info">
+                <thead>
+                    <tr role="row">
+                        <th>Restaurant Name</th>
+                        <th>Score</th>
+                        <th>Category</th>
+                        <th>Account</th>
+                        <th>Details</th>
+                        <th>Delete</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (RESTAURANT item in Model)
+                    {
+                    <tr>
+                        <td>
+
+                            @item.RestaurantName
+
+
+                        </td>
+
+                        <td>
+
+                            @item.RestaurantScore
+
+                        </td>
+
+                        <td>
+                            @foreach (var conc in item.CONCEPT_RESTAURANT)
+                            {
+
+                                if (item.RestaurantId == conc.RestaurantId)
+                                {
+
+                                    @conc.CONCEPT.ConceptName <br />
+
+
+                                }
+                            }
+
+                        </td>
+
+                        <td>
+                            <form action="/Restaurant/Update/@item.RestaurantId" method="post" role="form">
+                                <button type="submit" class="btn btn-danger rounded">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/Restaurant/Details/@item.RestaurantId" method="post" role="form">
+                                <button type="submit" class="btn btn-danger rounded">Update Restaurant</button>
+                            </form>
+                        </td>
+                        <td><a href="#" class="btn btn-danger rstDelete" data-rstid="@item.RestaurantId">Delete</a></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".rstDelete").click( function ()
+        {
+            var s = confirm("Are you sure you want to delete the record?");
+            if (s) {
+                var rid = $(this).data("rstid");
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Restaurant/Delete/" + rid,
+                        success: function () {
+                            alert("The record has been deleted.");
+                            window.location.replace("/Restaurant/Index");
+                        },
+                        error: function () {
+                            alert("Something went wrong!");
+                        }
+                    });
+            }
+            else {
+                alert("Cancel");
+            }
+        });
+    </script>
+}

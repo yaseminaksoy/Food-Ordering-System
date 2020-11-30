@@ -1,0 +1,298 @@
+﻿
+@{
+    ViewBag.Title = "MyProfile";
+}
+@using yasemin.Models
+@model USERS
+<body>
+    <div class="block">
+        <div class="block-heading">
+            <div class="main-text h2">
+                My Profile
+            </div>
+
+        </div>
+        <div class="block-content-outer">
+            <div class="block-content-inner">
+                <ul id="default-tabs-justified" class="nav nav-tabs nav-justified">
+                    <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+                    <li><a href="#address" data-toggle="tab">Address</a></li>
+                    <li><a href="#orders" data-toggle="tab">Orders</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="profile" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="block">
+                                    <div class="block-heading">
+                                        <div class="main-text h2">
+                                            Update Your Account
+                                        </div>
+
+                                    </div>
+                                    <div class="block-content-outer" style="display: block;">
+                                        <div class="block-content-inner">
+                                            <form action="/User/Add" method="post" role="form">
+
+                                                <input type="hidden" name="UserId" value="@Model.UserId" />
+
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">User Name</label>
+
+
+                                                    <input value="@Model.UserName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter user name" name="UserName">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">User Surname</label>
+
+
+                                                    <input value="@Model.UserSurname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter user surname" name="UserSurname">
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">User Mail Address</label>
+
+
+                                                    <input value="@Model.UserMail" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter user e-mail" name="UserMail">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">User Password</label>
+
+
+                                                    <input value="@Model.UserPassword" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter user password" name="UserPassword">
+
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">User Balance</label>
+
+
+                                                    <input value="@Model.UserBalance" type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter user balance" name="UserBalance">
+
+
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div id="address" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>
+                                    <span class="main-text">
+                                        My Addresses
+                                    </span>
+                                </h1>
+                            </div>
+                            <div class="col-md-6">
+
+                                <!-- START Main Buttons -->
+                                <div class="page-heading-controls">
+
+
+                                    <a href="/User/AddressAdd/@Model.UserId" role="button" class="btn btn-primary">Add New Address</a>
+                                </div>
+
+                                <!-- END Main Buttons -->
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table id="datatable-1" class="table table-striped table-hover dataTable no-footer" role="grid" aria-describedby="datatable-1_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Address Title</th>
+                                            <th>Description</th>
+                                            <th>Update</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (USER_ADDRESS ua in Model.USER_ADDRESS)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @ua.AddressTitle
+                                                </td>
+                                                <td>
+                                                    @ua.AddressDescription
+                                                </td>
+                                                <td>
+                                                    <form action="/User/AddressUpdate/@ua.AddressId" method="post" role="form">
+                                                        <button type="submit" class="btn btn-danger rounded">Update</button>
+                                                    </form>
+                                                </td>
+                                                <td><a href="#" class="btn btn-danger adrDelete" data-adrid="@ua.AddressId">Delete</a></td>
+
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="orders" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>
+                                    <span class="main-text">
+                                        My Orders
+                                    </span>
+                                </h1>
+                            </div>
+                            <div class="col-md-6">
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                @foreach (var ua in Model.ORDERS)
+                                {
+                                    if (ua.GiveScore == "false")
+                                    {
+                                        <form action="/User/GiveScore" method="post" role="form">
+                                            <div class="form-group">
+                                                <label>
+                                                    Rate the restaurant from 1 to 10
+                                                    <select name="Score" aria-controls="datatable-1" class="form-control input-sm">
+                                                        <option value="0">Select</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </label>
+                                                <input type="hidden" name="RestaurantId" value="@ua.RestaurantId" />
+                                                <input type="hidden" name="OrderId" value="@ua.OrderId" />
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <label>
+                                            You've already rated for this order.
+                                        </label>
+                                    }
+                                    <table id="datatable-1" class="table table-striped table-hover dataTable no-footer" role="grid" aria-describedby="datatable-1_info">
+                                        <thead>
+                                            <tr role="row">
+                                                
+                                                <th>Food Name</th>
+                                                <th>Food Description</th>
+                                                <th>Food Price</th>
+                                                <th>Food Amount</th>
+                                                <th>Food Total Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in ViewBag.order_food)
+                                            {
+                                                if (item.OrderId == ua.OrderId)
+                                                {
+                                                    foreach (var food in ViewBag.foods)
+                                                    {
+
+                                                        if (food.FoodId == item.FoodId)
+                                                        {
+                                                            <tr>
+                                                                
+                                                                <td>
+                                                                    @food.FoodName
+                                                                </td>
+                                                                <td>
+                                                                    @food.FoodDescription
+                                                                </td>
+                                                                <td>
+                                                                    @food.FoodPrice
+                                                                </td>
+                                                                <td>
+                                                                    @item.FoodAmount
+                                                                </td>
+                                                                <td>
+                                                                    @item.FoodTotalPrice
+                                                                </td>
+
+                                                            </tr>
+                                                        }
+
+                                                    }
+                                                }
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+
+@section scripts{
+
+    <script src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+
+    <script>
+        $(".adrDelete").click(function () {
+            var s = confirm("Are you sure you want to delete the record?");
+            if (s) {
+                var aid = $(this).data("adrid");
+                //alert("ID=" + id);
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/User/AddressDelete/" + aid,
+                        success: function () {
+                            alert("The record has been deleted.");
+                            window.location.replace("/User/MyProfile/");
+                        },
+                        error: function () {
+                            alert("Something went wrong!");
+                        }
+                    });
+            }
+            else {
+                alert("Cancel");
+            }
+
+        });
+
+
+    </script>
+    
+}
+
+

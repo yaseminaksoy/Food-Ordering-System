@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using yasemin.Models
+@model List<USERS>
+
+<div id="datatable-1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>
+                <span class="main-text">
+                    Users
+                </span>
+            </h1>
+        </div>
+        <div class="col-md-6">
+
+            <!-- START Main Buttons -->
+            <div class="page-heading-controls">
+                <a href="/User/Add" role="button" class="btn btn-primary">Add New User</a>
+
+            </div>
+            <!-- END Main Buttons -->
+
+        </div>
+    </div>
+    <form action="/User/Index" method="post" role="form">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <div class="dataTables_length" id="datatable-1_length">
+                    <label>Search an User</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search an user name.." name="searchText">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+
+            
+
+        </div>
+        
+    </form>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <table id="datatable-1" class="table table-striped table-hover dataTable no-footer" role="grid" aria-describedby="datatable-1_info">
+                <thead>
+                    <tr role="row">
+                        <th>User Name</th>
+                        <th>Surname</th>
+                        <th>Balance</th>
+                        <th>Account</th>
+                        <th>Address</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (USERS item in Model)
+                    {
+                    <tr>
+                        <td>
+
+                            @item.UserName
+
+
+                        </td>
+
+                        <td>
+
+                            @item.UserSurname
+
+                        </td>
+
+                        <td>
+
+                            @item.UserBalance
+
+                        </td>
+
+
+
+                        <td>
+                            <form action="/User/Update/@item.UserId" method="post" role="form">
+                                <button type="submit" class="btn btn-danger rounded">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/User/Address/@item.UserId" method="post" role="form">
+                                <button type="submit" class="btn btn-danger rounded">Go to Addresses</button>
+                            </form>
+                        </td>
+                        <td><a href="#" class="btn btn-danger usrDelete" data-usrid="@item.UserId">Delete</a></td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="~/Content/assets/js/required/jquery-1.11.1.min.js"></script>
+    <script>
+        $(".usrDelete").click(function () {
+            var s = confirm("Are you sure you want to delete the record?");
+            if (s) {
+                var uid = $(this).data("usrid");
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/User/Delete/" + uid,
+                        success: function () {
+                            alert("The record has been deleted.");
+                            window.location.replace("/User/Index");
+                        },
+                        error: function () {
+                            alert("Something went wrong!");
+                        }
+                    });
+            }
+            else {
+                alert("Cancel");
+            }
+        });
+    </script>
+}
+
