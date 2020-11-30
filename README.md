@@ -18,7 +18,7 @@ Roles: Admin, Restaurant, User</p>
 -Add models with EF Designer from Database (without Pluralize)
   
 -After creating models you should add some local variables 
-  that I didn't see it necessary;</p>
+  that I didn't see it necessary on database;</p>
   
     USERS:
     public string UserMail { get; set; }
